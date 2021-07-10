@@ -22,7 +22,7 @@ img {
 :root {
   --header-height: 4.5rem;
   /* colors */
-  --hue: 159;
+  --hue: 230;
   /* HSL color mode */
   --base-color: hsl(var(--hue) 36% 57%);
   --base-color-second: hsl(var(--hue) 65% 88%);
@@ -34,6 +34,10 @@ img {
 
   /* Fonts */
   --title-font-size: 1.875rem;
+  --subtitle-font-size: 1rem;
+  
+  --title-font: 'Poppins', sans-serif;
+  --body-font: 'DM Sans', sans-serif;
 }
 
 /*============= BASE ============= */
@@ -42,14 +46,14 @@ html {
 }
 
 body {
-  font: 400 1rem "DM Sans", sans-serif;
+  font: 400 1rem var(--body-font);
   color: var(--text-color);
   background: var(--body-color);
   -webkit-font-smoothing: antialised;
 }
 
 .title {
-  font: 700 var(--title-font-size) "Poppins", sans-serif;
+  font: 700 var(--title-font-size) var(--title-font);
   color: var(--title-color);
   -webkit-font-smoothing: auto;
 }
@@ -62,7 +66,7 @@ body {
   align-items: center;
   padding: 0 2rem;
   border-radius: .25rem;
-  font: 500 1rem "DM Sans", sans-serif;
+  font: 500 1rem var(--body-font);
   transition: background 300ms;
 }
 
@@ -98,7 +102,11 @@ body {
 }
 
 .section {
-  padding: 5rem 0; 
+  padding: calc(5rem + var(--header-height)) 0; 
+}
+
+.section .subtitle {
+  font-size: var(--subtitle-font-size);
 }
 
 .section .title {
@@ -130,13 +138,9 @@ body {
   box-shadow: 0 0 12px rgba(0, 0, 0, .15);
 }
 
-main {
-  margin-top: calc(var(--header-height) + 2rem);
-}
-
 /*============= LOGO ============= */
 .logo {
-  font: 700 1.31rem "Poppins", sans-serif;
+  font: 700 1.31rem var(--title-font);
   color: var(--title-color);
 }
 
@@ -166,8 +170,10 @@ nav ul li a {
   position: relative;
 }
 
-nav ul li a:hover {
+nav ul li a:hover,
+nav ul li a.active {
   color: var(--base-color);
+  font-weight: bold;
 }
 
 nav ul li a::after {
@@ -181,7 +187,8 @@ nav ul li a::after {
   transition: width .2s;
 }
 
-nav ul li a:hover:after {
+nav ul li a:hover::after,
+nav ul li a.active::after {
   width: 100%;
 }
 
@@ -362,7 +369,7 @@ nav.show .icon-close {
   margin-right: 0;
 }
 
-#testimnoials header {
+#testimonials header {
   margin-bottom: 0;
   margin-left: 1.5rem;
   margin-right: 1.5rem;
@@ -438,8 +445,9 @@ nav.show .icon-close {
 }
 
 /*============= FOOTER ============= */
-footer {
+footer.section {
   background: var(--base-color);
+  padding: 4rem 0;
 }
 
 footer .logo {
@@ -498,11 +506,124 @@ footer .social a:hover {
 
 /*============= RESPONSIVO ============= */
 /* extra large devices: 1200 > */
+@media (min-width: 1200px) {
+
+  .container {
+    max-width: 1120px;
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  .section {
+    padding: 10rem 0;
+  }
+
+  .section header,
+  .section#testimonials header {
+    max-width: 32rem;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .button {
+    height: 3.125rem;
+  }
+
+  nav .menu {
+    opacity: 1;
+    visibility: visible;
+    top: 0;
+  }
+
+  nav .menu ul {
+    display: flex;
+    gap: 2rem;
+  }
+
+  nav .menu ul li a.title {
+    font: 400 1rem var(--body-font);
+    -webkit-font-smoothing: antialised;
+  }
+
+  nav .menu ul li a.title.active {
+    font-weight: bold;
+    -webkit-font-smoothing: auto;
+  }
+
+  nav .icon-menu {
+    display: none;
+  }
+
+  main {
+    margin-top: var(--header-height);
+  }
+
+  #home .container {
+    grid-auto-flow: column;
+    justify-content: space-between;
+    margin: 0 auto;
+  }
+
+  #home .image {
+    order: 1;
+  }
+
+  #home .text {
+    order: 0;
+    max-width: 24rem;
+    text-align: left;
+  }
+
+  #about .container {
+    grid-auto-flow: column;
+    margin: 0 auto;
+  }
+
+  .cards {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .card {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+
+  #testimonials .container {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  #contact .container {
+    grid-auto-flow: column;
+    align-items: center;
+  }
+
+  #contact .text {
+    max-width: 25rem;
+  }
+
+  footer.section {
+    padding: 3.75rem 0;
+  }
+
+  footer .container {
+    grid-auto-flow: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  footer .logo {
+    font-size: 2.25rem;
+  }
+
+}
 /* large devices: 1023 > */
 /* large devices: 992 > */
 @media (min-width: 992px) {
   :root {
     --title-font-size: 2.25rem;
+    --subtitle-font-size: 1.125rem;
   }
 }
 
