@@ -70,7 +70,8 @@ body {
   transition: background 300ms;
 }
 
-.button:hover {
+.button:hover,
+.button:focus {
   background-color: var(--base-color-alt);
 }
 
@@ -142,6 +143,11 @@ body {
 .logo {
   font: 700 1.31rem var(--title-font);
   color: var(--title-color);
+  transition: transform .2s;
+}
+
+.logo:hover {
+  transform: translateY(-.25rem);
 }
 
 .logo span {
@@ -168,9 +174,11 @@ nav ul li {
 nav ul li a {
   transition: color .2s;
   position: relative;
+  outline: none;
 }
 
 nav ul li a:hover,
+nav ul li a:focus,
 nav ul li a.active {
   color: var(--base-color);
   font-weight: bold;
@@ -188,6 +196,7 @@ nav ul li a::after {
 }
 
 nav ul li a:hover::after,
+nav ul li a:focus::after,
 nav ul li a.active::after {
   width: 100%;
 }
@@ -345,6 +354,11 @@ nav.show .icon-close {
   border-bottom: .25rem solid var(--base-color);
   border-radius: .25rem .25rem 0 0;
   text-align: center;
+  transition: transform .2s;
+}
+
+.card:hover {
+  transform: translateY(-1.5rem);
 }
 
 .card i {
@@ -437,7 +451,17 @@ nav.show .icon-close {
 
 #contact ul li {
   display: flex;
-   align-items: center;
+  align-items: center;
+}
+
+#contact ul li a {
+  color: var(--text-color); 
+  transition: .2s;
+}
+
+#contact ul li a:hover {
+  color: var(--title-color);
+  transform: translateY(-.25rem);
 }
 
 #contact ul li i {
@@ -474,8 +498,10 @@ footer .social a {
   transition: .3s;
 }
 
-footer .social a:hover {
+footer .social a:hover,
+footer .social a:focus {
   transform: translateY(-.5rem);
+  outline: none;
 }
 
 /* Back to top */
@@ -505,14 +531,22 @@ footer .social a:hover {
 }
 
 /*============= RESPONSIVO ============= */
+/* Ultra Large Devices */
+@media (min-width: 1920px) {
+  header .container,
+  #home .container,
+  #about .container,
+  #services .container,
+  #testimonials .container,
+  #contact .container,
+  footer .container{
+    max-width: 1600px;
+  }
+
+}
+
 /* extra large devices: 1200 > */
 @media (min-width: 1200px) {
-
-  .container {
-    max-width: 1120px;
-    width: 80%;
-    margin: 0 auto;
-  }
 
   .section {
     padding: 10rem 0;
@@ -528,6 +562,42 @@ footer .social a:hover {
 
   .button {
     height: 3.125rem;
+  }
+
+  main {
+    margin-top: var(--header-height);
+  }
+
+  #home .image {
+    order: 1;
+  }
+
+  #home .text {
+    order: 0;
+    max-width: 24rem;
+    text-align: left;
+  }
+
+  #home .container {
+    grid-auto-flow: column;
+    justify-content: space-between;
+  }
+
+  #about .container {
+    grid-auto-flow: column;
+  }
+
+  .card {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+
+}
+/* large devices: 992 > */
+@media (min-width: 992px) {
+  :root {
+    --title-font-size: 2.25rem;
+    --subtitle-font-size: 1.125rem;
   }
 
   nav .menu {
@@ -555,45 +625,28 @@ footer .social a:hover {
     display: none;
   }
 
-  main {
-    margin-top: var(--header-height);
-  }
-
-  #home .container {
-    grid-auto-flow: column;
-    justify-content: space-between;
-    margin: 0 auto;
-  }
-
-  #home .image {
-    order: 1;
-  }
-
-  #home .text {
-    order: 0;
-    max-width: 24rem;
-    text-align: left;
-  }
-
-  #about .container {
-    grid-auto-flow: column;
-    margin: 0 auto;
-  }
-
   .cards {
     grid-template-columns: 1fr 1fr 1fr;
   }
 
-  .card {
-    padding-left: 3rem;
-    padding-right: 3rem;
+}
+
+/* medium devices 767 */
+@media (min-width: 767px) {
+  .container {
+    max-width: 1120px;
+    width: 80%;
+    margin: 0 auto;
   }
 
-  #testimonials .container {
-    margin-left: auto;
-    margin-right: auto;
+  #home .container {
+    margin: 0 auto;
   }
-  
+
+  #about .container {
+    margin: 0 auto;
+  }
+
   #contact .container {
     grid-auto-flow: column;
     align-items: center;
@@ -601,6 +654,11 @@ footer .social a:hover {
 
   #contact .text {
     max-width: 25rem;
+  }
+
+  #testimonials .container {
+    margin-left: auto;
+    margin-right: auto;
   }
 
   footer.section {
@@ -616,15 +674,4 @@ footer .social a:hover {
   footer .logo {
     font-size: 2.25rem;
   }
-
 }
-/* large devices: 1023 > */
-/* large devices: 992 > */
-@media (min-width: 992px) {
-  :root {
-    --title-font-size: 2.25rem;
-    --subtitle-font-size: 1.125rem;
-  }
-}
-
-/* medium devices 767 */

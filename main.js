@@ -34,35 +34,15 @@ const swiper = new Swiper('.swiper-container', {
   pagination: {
     el: '.swiper-pagination'
   },
-  mousewheel: true,
   keyboard: true,
+  loop: true,
   breakpoints: {
-    767: {
+    992: {
       slidesPerView: 2,
       setWrapperSize: true
     }
   }
 })
-
-//  Rolagem suave
-const scrollReveal = ScrollReveal({
-  origin: 'top',
-  distance: '30px',
-  duration: 300,
-  reset: true
-})
-
-scrollReveal.reveal(
-  `
-  #home .image, #home .text, 
-  #about .image, #about .text, 
-  #services header, #services .card,
-  #testimonials header, #testimonials .testimonials,
-  #contact .text, #contact .links,
-  footer .brand, footer .social
-`,
-  { interval: 100 }
-)
 
 // Botão voltar para o topo
 const backToTopButton = document.querySelector('.back-to-top')
